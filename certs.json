@@ -1,9 +1,9 @@
 {
-  "certificate_id": "CSVxMTW6rw4uA6rLQZBw8kk7wJ76oBd8WtSMHSkNbDBr",
-  "issuer_public_key": "N92Q3uVkcl62xiDKf4uDjnNjx0W0LrFP67+E9hZGV+U=",
-  "organization_name": "Google Inc.",
-  "valid_from": "2026-02-01T06:58:48Z",
-  "valid_to": "2027-02-01T06:58:48Z",
-  "ca_public_key_base64": "8BspiX/LNYjZ9hE5r619zRWHw68GV8SLORexVAblwmw=",
-  "ca_signature": "5KW46bAkjKvmvjeeqWWjsDUJOLL59kxZKdwajcRZNjLkxcpM0V5uPsOlk7mD19moANLnbsD5MAG9WULB7lCIBA=="
+  "certificate_id": "BSQ9heRpGGzChnouvGevKp5Z59tGehsk1KEHjQy82o5F",
+  "issuer_public_key": "yS8qEMNqe3fZIAmBbk8VRaXZllzGzs/DCvYYhUwBrSw=",
+  "organization_name": "Google Inc",
+  "valid_from": "2026-02-01T07:25:26Z",
+  "valid_to": "2027-02-01T07:25:26Z",
+  "ca_public_key_base64": "sDzJhUNvWk7jNIIvQg2vKg36HSifNJeYJHWZC3VUb6w=",
+  "ca_signature": "HGTUmZy39E//wP2pI7RRn7Ai5CTknwINXZTmF2ZtbSfN0PwyxVFhOJYXOH1UYyAxgIIcQftYazxxV+MwtpYqCA=="
 }
