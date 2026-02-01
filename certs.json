@@ -1,8 +1,8 @@
 {
-  "certificate_id": "CUoqvSSCbzo6AEYk3nBN2i9hXdeHJk8CMDUP9eTSaZq2",
+  "certificate_id": "7s4M1eWsYR9GzjyTASZ3e82L6YqfPH18y35WVZKfD2vp",
   "issuer_public_key": "N92Q3uVkcl62xiDKf4uDjnNjx0W0LrFP67+E9hZGV+U=",
   "organization_name": "Google Inc.",
-  "valid_from": "2026-01-31T20:12:42Z",
-  "valid_to": "2027-01-31T20:12:42Z",
-  "ca_signature": "JH8oVa6Y5Yp3J1LFa2EceUnUvae4XfnzDQCGdTGvJhe3y3/CAHDKegbgu7tyL3m5D774z7bnNoOWN1h53l1vBA=="
+  "valid_from": "2026-02-01T06:41:21Z",
+  "valid_to": "2027-02-01T06:41:21Z",
+  "ca_signature": "DDvVuog1+jQJ9+bSJ07z576eo7dtWYQAM7XsKO9L00u9tY89DletGgbq3Zaj1JLggLr/kiytZUDVFsI/Vb4zAg=="
 }
