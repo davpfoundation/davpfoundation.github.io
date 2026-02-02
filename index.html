@@ -32,8 +32,8 @@
         --fg: #222222;
         --el-bg: #f8f8f8;
         --hairline: rgba(0, 0, 0, 0.08);
-        --subtle: rgb(92, 92, 92);
-        --muted: rgba(68, 68, 68, 0.62);
+        --subtle: #222222;
+        --muted: #222222;
         --soft: rgba(0, 0, 0, 0.04);
         --card-bg: rgba(255, 255, 255, 0.9);
         --glass: rgba(255, 255, 255, 0.7);
@@ -45,14 +45,14 @@
         --bg: #000000;
         --fg: #fff;
         --el-bg: #0f0f0f;
-        --hairline: rgba(255, 255, 255, 0.2);
-        --subtle: rgb(255, 255, 255);
-        --muted: rgba(248, 248, 248, 0.883);
+        --hairline: rgba(255, 255, 255, 0.08);
+        --subtle: #fff;
+        --muted: #fff;
         --soft: rgba(255, 255, 255, 0.08);
         --card-bg: rgba(0, 0, 0, 0.18);
         --glass: rgba(0, 0, 0, 0.10);
         --shadow: rgba(255, 255, 255, 0.06);
-        --mesh-stroke: rgba(255, 255, 255, 0.18);
+        --mesh-stroke: rgba(62, 62, 62, 0.696);
       }
 
       * {
@@ -152,13 +152,17 @@
         color: var(--fg);
       }
 
-      .contentBg {
+      .sectionBlock {
         position: relative;
         left: 50%;
         width: 100vw;
         margin-left: -50vw;
-        background: var(--el-bg);
         padding: 0 20px 10px;
+        background: var(--bg);
+      }
+
+      .sectionBlock.isGray {
+        background: var(--el-bg);
       }
 
       .container {
@@ -283,6 +287,10 @@
         gap: 10px;
       }
 
+      .ctaRow .ctaRight {
+        margin-left: auto;
+      }
+
       .btn {
         display: inline-flex;
         align-items: center;
@@ -336,8 +344,8 @@
         padding-top: 22px;
       }
 
-      /* First section inside contentBg needs top spacing */
-      .contentBg .section:first-of-type {
+      /* First section inside sectionBlock needs top spacing */
+      .sectionBlock .section:first-of-type {
         margin-top: 0;
         padding-top: 20px;
         border-top: none;
@@ -378,20 +386,52 @@
       .grid3 {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0;
+        gap: 1px;
+        padding: 1px;
+        background: var(--hairline);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .grid3.grid2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .twoColSections {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .twoColSections .section {
+        margin-top: 0;
+        padding-top: 20px;
+        border-top: none;
       }
 
       .card {
-        border: 1px solid var(--hairline);
+        border: none;
         border-radius: 0;
         padding: 24px 20px;
         background: var(--bg);
         box-shadow: none;
       }
 
-      /* internal divider between cards */
-      .grid3 .card:not(:first-child) {
-        border-left: none;
+      /* Round only the outer corner cards to match the container */
+      .grid3 .card:first-child { border-radius: 12px 0 0 0; }
+      .grid3 .card:nth-child(3) { border-radius: 0 12px 0 0; }
+      .grid3 .card:nth-last-child(3) { border-radius: 0 0 0 12px; }
+      .grid3 .card:last-child { border-radius: 0 0 12px 0; }
+
+      .grid3.grid2 .card:first-child { border-radius: 12px 0 0 0; }
+      .grid3.grid2 .card:nth-child(2) { border-radius: 0 12px 0 0; }
+      .grid3.grid2 .card:nth-child(3) { border-radius: 0 0 0 12px; }
+      .grid3.grid2 .card:last-child { border-radius: 0 0 12px 0; }
+
+      .grid3 {
+        overflow: hidden;
       }
 
       .card h3 {
@@ -404,11 +444,6 @@
         margin: 0;
       }
 
-
-      /* internal divider between cards */
-      .grid3 .card:not(:first-child) {
-        border-left: none;
-      }
 
       .card h3 {
         margin: 0 0 8px;
@@ -496,30 +531,94 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 24px;
-        margin: 32px 0;
-        padding: 32px 24px;
+        gap: 14px;
+        margin: 20px 0;
+        padding: 0;
+        border: none;
+        background: transparent;
+        border-radius: 0;
+        width: 100%;
+      }
+
+      .flowGroup {
+        width: min(920px, 100%);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
         border: 1px solid var(--hairline);
+        border-radius: 12px;
         background: var(--bg);
       }
 
-      .flowRow {
+      .flowGroupTitle {
+        font-size: 12px;
+        font-weight: 650;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-align: left;
+      }
+
+      .flowGridRow {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
+      }
+
+      .flowGridRow.row4 {
+        grid-template-columns: minmax(160px, 1fr) 26px minmax(160px, 1fr) 26px minmax(160px, 1fr) 26px minmax(160px, 1fr);
+      }
+
+      .flowGridRow.row3 {
+        grid-template-columns: minmax(160px, 1fr) 26px minmax(160px, 1fr) 26px minmax(160px, 1fr);
+      }
+
+      .flowArrowCell {
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-wrap: wrap;
-        gap: 12px;
+      }
+
+      .flowRowDown {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
       }
 
       .flowStep {
-        padding: 10px 16px;
+        padding: 9px 12px;
         border: 1px solid var(--hairline);
         background: var(--el-bg);
         font-size: 13px;
         font-weight: 500;
-        white-space: nowrap;
-        border-radius: 4px;
+        white-space: normal;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 1.35;
+        width: 100%;
+        box-shadow: 0 1px 0 var(--shadow);
+      }
+
+      .flowStep strong {
+        display: block;
+        font-size: 13px;
+        font-weight: 650;
+        margin-bottom: 2px;
+      }
+
+      .flowStep span {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      .flowStep.isOptional {
+        border-style: dashed;
       }
 
       .flowArrow {
@@ -534,7 +633,29 @@
         color: var(--muted);
         font-family: monospace;
         font-weight: bold;
-        transform: rotate(90deg);
+        line-height: 1;
+      }
+
+      .flowArrowCell .flowArrowDown {
+        display: none;
+      }
+
+      .flowHint {
+        font-size: 12px;
+        color: var(--muted);
+        text-align: center;
+        max-width: 68ch;
+        line-height: 1.6;
+        margin-top: 4px;
+      }
+
+      #coreflow .sectionTitle {
+        justify-content: center;
+      }
+
+      #coreflow p {
+        text-align: center;
+        margin: 0 auto;
       }
 
       @keyframes cueIn {
@@ -547,11 +668,22 @@
         .grid3 {
           grid-template-columns: 1fr;
         }
-        .grid3 .card {
-          border: 1px solid var(--hairline);
+
+        .twoColSections {
+          grid-template-columns: 1fr;
         }
-        .grid3 .card + .card {
-          border-top: none;
+
+        .flowGridRow.row4,
+        .flowGridRow.row3 {
+          grid-template-columns: 1fr;
+        }
+
+        .flowArrowCell .flowArrow {
+          display: none;
+        }
+
+        .flowArrowCell .flowArrowDown {
+          display: inline;
         }
       }
 
@@ -623,7 +755,7 @@
             <circle cx="1120" cy="710" r="4" opacity="0.34" />
           </g>
 
-          <g opacity="0.12">
+          <g opacity="0.30">
             <circle cx="455" cy="420" r="120" fill="url(#node)" />
             <circle cx="690" cy="190" r="110" fill="url(#node)" />
             <circle cx="1005" cy="610" r="130" fill="url(#node)" />
@@ -686,11 +818,11 @@
             <div class="ctaRow">
               <a class="btn primary" href="#getstarted">Get Started</a>
               <a class="btn" href="https://github.com/davpfoundation/davp">GitHub</a>
+              <a class="btn ctaRight" href="#">Visit the Handbook</a>
             </div>
           </section>
 
-          <div class="contentBg"><div class="container">
-
+          <div class="sectionBlock isGray"><div class="container">
           <section class="section" id="howitworks">
             <div class="sectionTitle">
               <h2 id="howitworks"><a href="#howitworks" class="anchor-link">#</a>How it works</h2>
@@ -704,27 +836,27 @@
               <div class="card">
                 <h3>Asset Proofs</h3>
                 <p>
-                  Immutable proof objects containing a BLAKE3 hash, creator Ed25519 signature, UTC timestamp, and metadata (type, AI flag, tags, parent verification_id). Signed and globally unique.
+                  Proof objects binding a BLAKE3 content hash to metadata and a UTC timestamp, signed by a creator Ed25519 key. Proofs are locally verifiable; the signature is the trust primitive.
                 </p>
               </div>
               <div class="card">
                 <h3>Decentralized Network</h3>
                 <p>
-                  Peer-to-peer mesh with gossip replication. A Common Network Tracker (CNT) bootstraps verified nodes; after bootstrap, the protocol runs without any central component.
+                  Optional peer-to-peer TCP mesh with gossip replication. A tracker can help with peer discovery, but it does not certify proofs and is not an authority.
                 </p>
               </div>
               <div class="card">
                 <h3>Verification</h3>
                 <p>
-                  Anyone can verify locally: recompute the hash, check the Ed25519 signature, and validate metadata. Optional issuer certificates can be queried off-chain for organizational trust.
+                  Always verify the Ed25519 signature over the proof payload. Optionally verify the asset hash if you have the bytes. Issuer certificates are an optional identity label resolved off-chain.
                 </p>
               </div>
-            </div>
-            <div class="grid3">
+            
+            
               <div class="card">
                 <h3>Monetization</h3>
                 <p>
-                  Protocol usage is always free. Businesses pay for bulk registration, certified/legal timestamps, enterprise APIs, and trusted node operation. Payments are out-of-band; the protocol remains open.
+                  Protocol usage is always free. Optional enterprise services can exist out-of-band (e.g., bulk registration, legal-grade timestamps, operating infrastructure, or API access) without protocol-level payment enforcement.
                 </p>
               </div>
               <div class="card">
@@ -741,45 +873,241 @@
               </div>
             </div>
           </section>
+          </div><!-- /container -->
+          </div><!-- /sectionBlock -->
+
+          <!-- Use cases (white) -->
+          <div class="sectionBlock"><div class="container">
+            <section class="section" id="usecases">
+              <div class="sectionTitle">
+              <h2 id="usecases"><a href="#usecases" class="anchor-link">#</a>Core concepts</h2>
+              </div>
+
+            <p style="color: var(--muted);">
+              Understand the building blocks of DAVP: assets, hashes, proofs, and verification identifiers. These primitives are cryptographically simple and locally verifiable.
+            </p>
+
+            <div class="grid3 grid2">
+              <div class="card">
+                <h3>Asset</h3>
+                <p>Any digital content treated as raw bytes (typically a file). DAVP does not interpret file formats.</p>
+              </div>
+              <div class="card">
+                <h3>Asset hash (BLAKE3)</h3>
+                <p>A BLAKE3 hash of the asset bytes, embedded in the proof. This is the cryptographic link between a proof and a specific byte sequence.</p>
+              </div>
+              <div class="card">
+                <h3>Proof</h3>
+                <p>A signed object containing asset_hash, timestamp, asset_type, ai_assisted, and metadata. The signature is over a serialized payload and does not include the verification_id.</p>
+              </div>
+              <div class="card">
+                <h3>Verification ID</h3>
+                <p>A 64-character lookup identifier generated from randomness. It is not a trust primitive and does not prove global uniqueness; authenticity comes from signature (and optional hash check).</p>
+              </div>
+            </div>
+            </section>
+          </div><!-- /container -->
+          </div><!-- /sectionBlock -->
+
+          <!-- Open gray wrapper for alternating background -->
+          <div class="sectionBlock isGray"><div class="container">
+          <!-- Identity model -->
+          <section class="section" id="identitymodel">
+            <div class="sectionTitle">
+              <h2 id="identitymodel"><a href="#identitymodel" class="anchor-link">#</a>Issuer certificates</h2>
+            </div>
+            <p style="color: var(--muted); max-width: 68ch;">
+              Optional identity labels that do not affect cryptographic validity. Certificates are fetched off-chain and can be used to associate proofs with known issuers.
+            </p>
+            <p style="color: var(--muted); max-width: 68ch;">
+              Issuer certificates are an optional identity label layer. They do not change what makes a proof cryptographically valid.
+            </p>
+            <ul style="padding-left: 20px; line-height: 1.6; color: var(--subtle);">
+              <li><em>Valid proof</em>: signature verifies (and if asset bytes are provided, hash matches).</li>
+              <li><em>Certified proof</em>: valid proof + issuer certificate validation succeeds for the referenced issuer_certificate_id.</li>
+              <li><em>Uncertified proof</em>: valid proof + no issuer_certificate_id, or certificate validation fails/not found.</li>
+            </ul>
+            <p style="color: var(--muted); max-width: 68ch;">
+              Certificates are fetched from <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace;">https://davpfoundation.github.io/site/certs.json</span> by default.
+            </p>
+          </section>
 
           </div><!-- /container -->
-          </div><!-- /contentBg -->
+          </div><!-- /sectionBlock -->
 
-          <section class="section" id="getstarted" style="background: var(--bg); padding: 32px 20px; margin: 0 -20px;">
-            <div class="container">
+          <div class="sectionBlock"><div class="container">
+            <section class="section" id="getstarted">
               <div class="sectionTitle">
                 <h2 id="getstarted"><a href="#getstarted" class="anchor-link">#</a>Get Started</h2>
               </div>
-<p>Open source Rust implementation. Run as a CLI tool, server, or embed in your app.</p>
+<p style="color: var(--muted);">Open source Rust implementation. Run as a CLI tool, server, or embed in your app.</p>
               <div class="downloads">
                 
                 <div class="dlRow">
                   <a class="btn primary" href="https://github.com/davpfoundation/davp/releases" rel="noopener">See releases</a>
                   <a class="btn" href="https://github.com/davpfoundation/davp" rel="noopener">GitHub</a>
-                  <br>
                 </div>
                 
               </div>
-            </div>
-          </section>
+            </section>
+          </div><!-- /container -->
+          </div><!-- /sectionBlock -->
 
-          <div class="contentBg"><div class="container">
+          <div class="sectionBlock isGray"><div class="container">
 
           <section class="section" id="coreflow">
             <div class="sectionTitle">
-              <h2 id="coreflow"><a href="#coreflow" class="anchor-link">#</a>Core Flow</h2>
+              <h2 id="coreflow"><a href="#coreflow" class="anchor-link">#</a>Proof lifecycle</h2>
             </div>
-            
-            <div style="border: 1px solid var(--hairline); background: #f3f2f3; border-radius: 4px; overflow: hidden;">
-              <iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVGH01rX0=/?embedMode=view_only_without_ui&moveToViewport=-1746,781,4305,2292&embedId=384053993781" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen style="width: 100%; height: auto; aspect-ratio: 768 / 432; border: none;"></iframe>
-            </div>
-            <p class="hint" style="margin-top: 24px; margin-bottom: 0; text-align: center;">
-              Each step is cryptographically bound; proofs are immutable. Anyone can verify locally without trusting a third party.
+            <p style="color: var(--muted); max-width: 68ch; margin-left: auto; margin-right: auto;">
+              From asset bytes to a verifiable proof: hash, signature, metadata, and more.
             </p>
-          </section>
+            <div class="flowChart" role="group" aria-label="Proof lifecycle flowchart">
+              <div class="flowGroup" aria-label="Phase 1: Asset intake">
+                <div class="flowGroupTitle">Phase 1 — Asset intake</div>
+                <div class="flowGridRow row4">
+                  <div class="flowStep">
+                    <strong>Read asset bytes</strong>
+                    <span>Example: file contents</span>
+                  </div>
+                  <div class="flowArrowCell"><span class="flowArrow">→</span><span class="flowArrowDown">↓</span></div>
+                  <div class="flowStep">
+                    <strong>Compute asset hash</strong>
+                    <span><em>asset_hash</em> = BLAKE3(asset_bytes)</span>
+                  </div>
+                  <div class="flowArrowCell"><span class="flowArrow">→</span><span class="flowArrowDown">↓</span></div>
+                  <div class="flowStep">
+                    <strong>Set timestamp</strong>
+                    <span><em>timestamp</em> = current UTC time</span>
+                  </div>
+                  <div class="flowArrowCell"><span class="flowArrow">→</span><span class="flowArrowDown">↓</span></div>
+                  <div class="flowStep">
+                    <strong>Build signing payload</strong>
+                    <span>asset_hash, timestamp, asset_type, ai_assisted, metadata</span>
+                  </div>
+                </div>
+              </div>
 
+              <div class="flowRowDown"><div class="flowArrowDown">↓</div></div>
+
+              <div class="flowGroup" aria-label="Phase 2: Signing & identification">
+                <div class="flowGroupTitle">Phase 2 — Signing & identification</div>
+                <div class="flowGridRow row4">
+                  <div class="flowStep">
+                    <strong>Serialize payload</strong>
+                    <span>bincode</span>
+                  </div>
+                  <div class="flowArrowCell"><span class="flowArrow">→</span><span class="flowArrowDown">↓</span></div>
+                  <div class="flowStep">
+                    <strong>Sign payload</strong>
+                    <span>Ed25519 signature with creator keypair</span>
+                  </div>
+                  <div class="flowArrowCell"><span class="flowArrow">→</span><span class="flowArrowDown">↓</span></div>
+                  <div class="flowStep">
+                    <strong>Derive public key</strong>
+                    <span>creator_public_key from the keypair</span>
+                  </div>
+                  <div class="flowArrowCell"><span class="flowArrow">→</span><span class="flowArrowDown">↓</span></div>
+                  <div class="flowStep">
+                    <strong>Generate verification ID</strong>
+                    <span>64-char lookup ID derived from randomness</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flowRowDown"><div class="flowArrowDown">↓</div></div>
+
+              <div class="flowGroup" aria-label="Phase 3: Storage & distribution">
+                <div class="flowGroupTitle">Phase 3 — Storage & distribution</div>
+                <div class="flowGridRow row3">
+                  <div class="flowStep">
+                    <strong>Assemble Proof</strong>
+                    <span>Fields + signature + verification_id</span>
+                  </div>
+                  <div class="flowArrowCell"><span class="flowArrow">→</span><span class="flowArrowDown">↓</span></div>
+                  <div class="flowStep">
+                    <strong>Store locally</strong>
+                    <span>Write proof to storage_dir</span>
+                  </div>
+                  <div class="flowArrowCell"><span class="flowArrow">→</span><span class="flowArrowDown">↓</span></div>
+                  <div class="flowStep isOptional">
+                    <strong>Replicate to peers (optional)</strong>
+                    <span>Peer-to-peer TCP gossip replication</span>
+                  </div>
+                </div>
+              </div>
+              <div class="flowHint">
+                Verification is offline-checkable: signature is mandatory; file hash checking is optional.
+              </div>
+            </div>
+          </section>
           </div><!-- /container -->
-          </div><!-- /contentBg -->
+          </div><!-- /sectionBlock -->
+
+          <div class="sectionBlock"><div class="container">
+            <section class="section" id="cliexample">
+              <div class="sectionTitle">
+                <h2 id="cliexample"><a href="#cliexample" class="anchor-link">#</a>CLI example</h2>
+              </div>
+              <p style="color: var(--muted); max-width: 68ch;">
+                Generate a keypair, create a proof for any file, and verify it. All operations are local and deterministic.
+              </p>
+              <pre style="background: var(--el-bg); padding: 16px; overflow:auto; border: 1px solid var(--hairline);"><code>$ davp keygen --new
+
+$ davp create --file artwork.png \
+              --keypair_base64 &lt;base64&gt; \
+              --asset_type image \
+              --ai_assisted false \
+              --storage_dir output
+→ verification_id: 12SpRWz...
+
+$ davp verify --verification_id 12SpRWz... \
+              --file artwork.png \
+              --storage_dir output
+→ issuer: Goolge Inc.
+→ verification_id: 12SpRWz...
+→ status: verified</code></pre>
+            </section>
+          </div><!-- /container -->
+          </div><!-- /sectionBlock -->
+
+          <div class="sectionBlock isGray"><div class="container">
+            <div class="twoColSections">
+              <section class="section" id="not">
+                <div class="sectionTitle">
+                  <h2 id="not"><a href="#not" class="anchor-link">#</a>What DAVP is NOT</h2>
+                </div>
+                <p style="color: var(--muted); max-width: 68ch;">
+                  DAVP avoids global consensus, blockchains, and trusted authorities. It is a simple, local-first protocol for cryptographic proofs.
+                </p>
+                <ul style="padding-left: 20px; line-height: 1.6; color: var(--subtle);">
+                  <li>No global consensus, ordering, or finality</li>
+                  <li>No blockchain, mining, or consensus mechanism</li>
+                  <li>No global immutability guarantees across the network</li>
+                  <li>No truth claims about metadata or real-world identity of a key</li>
+                  <li>No global namespace or authority for verification IDs</li>
+                </ul>
+              </section>
+
+              <section class="section" id="layers">
+                <div class="sectionTitle">
+                  <h2 id="layers"><a href="#layers" class="anchor-link">#</a>Storage model</h2>
+                </div>
+                <p style="color: var(--muted); max-width: 68ch;">
+                  Local-first storage with simple file formats. Each node’s directory is authoritative; replication is optional and best-effort.
+                </p>
+                <ul style="padding-left: 20px; line-height: 1.6; color: var(--subtle);">
+                  <li><em>Local-first</em>: the storage directory is authoritative for a node’s proofs.</li>
+                  <li><span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace;">&lt;verification_id&gt;.bin</span>: bincode-serialized Proof</li>
+                  <li><span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace;">&lt;verification_id&gt;.meta.bin</span>: optional metadata containing issuer_certificate_id</li>
+                  <li><span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace;">hash_index.bin</span>: asset_hash → list of verification_ids</li>
+                  <li><em>No global state</em>: different nodes can have different subsets; replication is best-effort.</li>
+                </ul>
+              </section>
+            </div>
+          </div><!-- /container -->
+          </div><!-- /sectionBlock -->
+
           </main>
 
         <footer>
